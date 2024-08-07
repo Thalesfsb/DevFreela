@@ -14,6 +14,7 @@ namespace DevFreela.Api.Controllers
         {
             _contexto = contexto;
         }
+
         // GET api/habilidades?buscar=string
         [HttpGet]
         public IActionResult GetAll(string buscar)
@@ -29,6 +30,9 @@ namespace DevFreela.Api.Controllers
         {
             var habilidade = _contexto.Habilidades.SingleOrDefault(h => h.Id == id);
 
+            if (habilidade is null)
+                return NotFound();
+
             return Ok(habilidade);
         }
 
@@ -41,20 +45,38 @@ namespace DevFreela.Api.Controllers
             _contexto.Habilidades.Add(habilidade);
             _contexto.SaveChanges();
 
-            return CreatedAtAction(nameof(GetById), new { id = 1 }, modelo);
+            return CreatedAtAction(nameof(GetById), new { id = habilidade.Id }, modelo);
         }
 
         // PUT api/habilidades/1234
         [HttpPut("{id}")]
         public IActionResult Put(int id, AtualizarHabilidadesEntradaModelo modelo)
-        { 
-            return NoContent(); 
+        {
+            var habilidade = _contexto.Habilidades.SingleOrDefault(h => h.Id == id);
+
+            if (habilidade is null)
+                return NotFound();
+
+            _contexto.Update(habilidade);
+            _contexto.SaveChanges();
+
+            return NoContent();
         }
 
         // DELETE api/habilidades/1234
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id) 
-        { 
+        public IActionResult Delete(int id)
+        {
+            var habilidade = _contexto.Habilidades.SingleOrDefault(h => h.Id == id);
+
+            if(habilidade is null)
+                return NotFound();
+
+            habilidade.Deletado = true;
+
+            _contexto.Update(habilidade);
+            _contexto.SaveChanges();
+
             return NoContent();
         }
     }

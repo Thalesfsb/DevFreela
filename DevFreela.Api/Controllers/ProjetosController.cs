@@ -65,7 +65,7 @@ namespace DevFreela.Api.Controllers
         [HttpPost]
         public IActionResult Post([FromBody]CriarProjetoEntradaModelo modelo)
         {
-            var projeto = modelo.ParaEntidade();
+            var projeto = new Projeto(modelo.Titulo, modelo.Descricao, modelo.IdCliente, modelo.IdFreelancer, modelo.CustoTotal);
 
             _contexto.Projetos.Add(projeto);
             _contexto.SaveChanges();
@@ -145,17 +145,12 @@ namespace DevFreela.Api.Controllers
         [HttpPost("{id}/comentario")]
         public IActionResult PostComentario(int id, CriarComentarioProjetoEntradaModelo modelo)
         {
-            var projeto = _contexto.Projetos.SingleOrDefault(p => p.Id == id);
-
-            if (projeto is null)
-                return NotFound();
-
             var comentario = new ProjetoComentario(modelo.Conteudo, modelo.IdProjeto, modelo.IdUsuario);
 
             _contexto.ProjetoComentarios.Add(comentario);
             _contexto.SaveChanges();
 
-            return NoContent();
+            return CreatedAtAction(nameof(GetById), new {Id = comentario.Id}, comentario);
         }
     }
 }
