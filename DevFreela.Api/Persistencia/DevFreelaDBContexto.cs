@@ -32,6 +32,13 @@ namespace DevFreela.Api.Persistencia
                     .WithMany(u => u.DonoProjeto)
                     .HasForeignKey(p => p.IdCliente)
                     .OnDelete(DeleteBehavior.Restrict);
+
+                // Um projeto tem varios comentarios
+                p.HasMany(p => p.Comentarios)
+                    // Um comentario está para um projeto
+                    .WithOne(pc => pc.Projeto)
+                    .HasForeignKey(pc => pc.IdProjeto)
+                    .OnDelete(DeleteBehavior.Restrict);
             });
 
             builder.Entity<Usuario>(u =>
@@ -63,6 +70,13 @@ namespace DevFreela.Api.Persistencia
                     .WithMany(e => e.Comentarios)
                     // Chave estrangeira, que faz um comentario estar relacionado com um projeto
                     .HasForeignKey(e => e.IdProjeto)
+                    .OnDelete(DeleteBehavior.Restrict);
+
+                // Um comentario é de uma pessoa
+                e.HasOne(e => e.Usuario)
+                    // Uma pessoa pode ter varios comentarios
+                    .WithMany(c => c.Comentarios)
+                    .HasForeignKey(e => e.IdUsuario)
                     .OnDelete(DeleteBehavior.Restrict);
             });
 

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "o551D37RxEZko19FUzi+NW0YH7cN1X8F8dmYR6KT23a4mPCawCGOq5esvrBrddxQYOzs0q6sP0vyFXyMrRoG4g==",
+  "dgSpecHash": "64Ujh8q9OGpG45aHWDZdXmY2/aIiDTPfVhGaIyIInmHoL3qH3CHQtWkq6xILcStR+QtFXnXcjGR+HLSBVDTFYQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\thales.silveira\\Desktop\\Mentoria\\Projetos\\DevFreela\\DevFreela.Api\\DevFreela.Api.csproj",
+  "projectFilePath": "C:\\GitHub-Pessoal\\DevFreela\\DevFreela.Api\\DevFreela.Api.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\thales.silveira\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",
     "C:\\Users\\thales.silveira\\.nuget\\packages\\azure.identity\\1.10.3\\azure.identity.1.10.3.nupkg.sha512",
