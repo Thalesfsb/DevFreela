@@ -32,20 +32,20 @@ namespace DevFreela.Api.Controllers
 
         // POST api/usuarios
         [HttpPost]
-        public IActionResult Post(CriarUsuarioEntradaModelo modelo)
+        public IActionResult Post([FromBody]CriarUsuarioEntradaModelo modelo)
         {
             return CreatedAtAction(nameof(GetById), new { id = 1 }, modelo);
         }
 
-        // PUT api/usuario-perfil
-        [HttpPut]
+        // PUT api/1234/usuario-perfil
+        [HttpPut("{id}/usuario-perfil")]
         public IActionResult PostPerfilImagem(IFormFile formFile)
         {
             return Ok($"Name: {formFile.Name}, Tamanho: {formFile.Length}");
         }
 
         // POST api/usuario/1234/habilidades
-        [HttpPost]
+        [HttpPost("{id}/habilidades")]
         public IActionResult CriarHabilidades(CriarUsuarioEntradaModelo modelo)
         {
             return Ok(); 

@@ -2,10 +2,7 @@
 using DevFreela.Api.Modelos;
 using DevFreela.Api.Persistencia;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
-using System.Data.SqlClient;
 
 namespace DevFreela.Api.Controllers
 {
@@ -66,7 +63,7 @@ namespace DevFreela.Api.Controllers
 
         // POST api/projetos
         [HttpPost]
-        public IActionResult Post(CriarProjetoEntradaModelo modelo)
+        public IActionResult Post([FromBody]CriarProjetoEntradaModelo modelo)
         {
             var projeto = modelo.ParaEntidade();
 
@@ -110,7 +107,7 @@ namespace DevFreela.Api.Controllers
             return NoContent();
         }
 
-        // PUT api/projetos/1234
+        // PUT api/projetos/1234/iniciarprojeto
         [HttpPut("{id}/iniciarprojeto")]
         public IActionResult IniciarProjeto(int id)
         {
