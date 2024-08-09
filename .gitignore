@@ -1,2 +1,36 @@
+# Ignore arquivos temporários, binários e de build do Visual Studio
+*.obj
+*.exe
+*.pdb
+*.ilk
+*.idb
+*.dll
+*.log
+*.lib
+*.vspscc
+*.vssscc
+*.tmp
+*.user
+*.aps
+*.pch
+*.vsdx
 
-.vs/DevFreela/FileContentIndex/cd20d971-48a9-42e3-87e8-aa6c6f13f9b7.vsidx
+# Pastas de build
+[Bb]in/
+[Oo]bj/
+[Oo]ut/
+
+# Pastas de configuração do Visual Studio
+.vscode/
+.vs/
+
+# Arquivos de configuração do Visual Studio
+*.suo
+*.user
+*.sln.docstates
+
+# Arquivos de teste do Visual Studio
+TestResults/
+*.cache
+*.log
+*.tlog
