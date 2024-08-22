@@ -27,7 +27,7 @@ namespace DevFreela.API.Controllers
                 .Include(p => p.Freelancer)
                 .Where(p => !p.IsDeleted && (search == "" || p.Title.Contains(search) || p.Description.Contains(search)))
                 .Skip(page * size)
-                
+                .Take(size)
                 .ToList();
 
             var model = projects.Select(ProjectItemViewModel.FromEntity).ToList();
