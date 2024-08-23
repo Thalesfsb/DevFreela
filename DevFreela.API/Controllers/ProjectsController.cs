@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using DevFreela.Infrastructure.Persistence;
 using DevFreela.Application.Models;
+using DevFreela.Application.Models.ViewModel;
 
 namespace DevFreela.API.Controllers
 {

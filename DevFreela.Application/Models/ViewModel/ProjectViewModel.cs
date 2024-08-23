@@ -1,6 +1,6 @@
 ﻿using DevFreela.Core.Entities;
 
-namespace DevFreela.Application.Models
+namespace DevFreela.Application.Models.ViewModel
 {
     public class ProjectViewModel
     {

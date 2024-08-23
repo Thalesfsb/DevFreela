@@ -1,5 +1,6 @@
 ﻿using Azure;
 using DevFreela.Application.Models;
+using DevFreela.Application.Models.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Drawing;

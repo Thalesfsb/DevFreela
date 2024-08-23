@@ -1,4 +1,5 @@
 ﻿using DevFreela.Application.Models;
+using DevFreela.Application.Models.ViewModel;
 using DevFreela.Core.Entities;
 using DevFreela.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
