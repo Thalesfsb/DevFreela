@@ -121,7 +121,6 @@ namespace DevFreela.Application.Services
             if (project is null)
                 return ResultViewModel.Error("Projeto não existe");
 
-
             project.Update(model.Title, model.Description, model.TotalCost);
 
             _context.Projects.Update(project);
