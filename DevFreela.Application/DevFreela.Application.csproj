@@ -16,7 +16,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Commands\InserProject\" />
     <Folder Include="Commands\UpdateProject\" />
     <Folder Include="Commands\StartProject\" />
     <Folder Include="Queries\GetProjectById\" />
