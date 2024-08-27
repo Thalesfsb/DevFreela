@@ -1,5 +1,7 @@
 ﻿using DevFreela.Application.Commands.InsertProject;
+using DevFreela.Application.Models.ViewModel;
 using DevFreela.Application.Services;
+using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -26,14 +28,15 @@ namespace DevFreela.Application
         }
         private static IServiceCollection AddHandlers(this IServiceCollection services)
         {
-            /*
-             * Vai adicionar todos os serviços que estejam implementando IRequest e IResquestHandler
+            /* Vai adicionar todos os serviços que estejam implementando IRequest e IResquestHandler
              * do assembly do projeto que contem InsertProjectCommand e esta na camada Application
              * ele vai buscar em todo o projeto application pelos os comandos
              */
+             
             services.AddMediatR(config =>
                 config.RegisterServicesFromAssemblyContaining<InsertProjectCommand>());
 
+            services.AddTransient<IPipelineBehavior<InsertProjectCommand, ResultViewModel<int>>, InsertProjectValidateCommandBehavior>();
             return services;
         }
     }
