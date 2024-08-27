@@ -1,4 +1,5 @@
-﻿using DevFreela.Application.Services;
+﻿using DevFreela.Application.Commands.InsertComment;
+using DevFreela.Application.Services;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -18,6 +19,18 @@ namespace DevFreela.Application
         private static IServiceCollection AddServices(this IServiceCollection services)
         {
             services.AddScoped<IProjectService, ProjectService>();
+            return services;
+        }
+        private static IServiceCollection AddHandlers(this IServiceCollection services)
+        {
+            /*
+             * Vai adicionar todos os serviços que estejam implementando IRequest e IResquestHandler
+             * do assembly do projeto que contem InsertProjectCommand e esta na camada Application
+             * ele vai buscar em todo o projeto application pelos os comandos
+             */
+            services.AddMediatR(config =>
+                config.RegisterServicesFromAssemblyContaining<InsertProjectCommand>());
+
             return services;
         }
     }
