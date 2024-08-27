@@ -15,7 +15,11 @@ namespace DevFreela.API.Controllers
         {
             _context = context;
         }
-
+        // GET api/skills/1234
+        [HttpGet("{id}")]
+        public IActionResult GetById() 
+        { 
+        }
         // GET api/skills
         [HttpGet]
         public IActionResult GetAll()
@@ -35,6 +39,13 @@ namespace DevFreela.API.Controllers
             _context.SaveChanges();
 
             return NoContent();
+        }
+
+        // DELETE api/skills/1234
+        [HttpDelete("{id}")]
+        public IActionResult Delete (int id)
+        {
+
         }
     }
 }
