@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DevFreela.Application.Commands.InsertComment
 {
-    public class InsertProjectHandler : IRequestHandler<InsertProjectCommand, ResultViewModel>
+    public class InsertProjectHandler : IRequestHandler<InsertCommentCommand, ResultViewModel>
     {
         private readonly DevFreelaDbContext _context;
 
@@ -15,7 +15,7 @@ namespace DevFreela.Application.Commands.InsertComment
             _context = context;
         }
 
-        public async Task<ResultViewModel> Handle(InsertProjectCommand request, CancellationToken cancellationToken)
+        public async Task<ResultViewModel> Handle(InsertCommentCommand request, CancellationToken cancellationToken)
         {
             var project = await _context.Projects.SingleOrDefaultAsync(p => p.Id == request.IdProject);
 

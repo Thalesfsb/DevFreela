@@ -3,9 +3,9 @@ using MediatR;
 
 namespace DevFreela.Application.Commands.InsertComment
 {
-    public class InsertProjectCommand : IRequest<ResultViewModel>
+    public class InsertCommentCommand : IRequest<ResultViewModel>
     {
-        public InsertProjectCommand(string content, int idProject, int idUser)
+        public InsertCommentCommand(string content, int idProject, int idUser)
         {
             Content = content;
             IdProject = idProject;
