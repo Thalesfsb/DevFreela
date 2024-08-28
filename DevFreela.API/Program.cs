@@ -3,7 +3,6 @@ using DevFreela.Application;
 using DevFreela.Application.Models;
 using DevFreela.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 

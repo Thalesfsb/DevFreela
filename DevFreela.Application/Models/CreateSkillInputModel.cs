@@ -2,6 +2,6 @@
 {
     public class CreateSkillInputModel
     {
-        public string Description { get; set; }
+        public required string Description { get; set; }
     }
 }

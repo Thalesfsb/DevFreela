@@ -1,4 +1,5 @@
 ﻿using DevFreela.Application.Commands.InsertProject;
+using DevFreela.Application.Commands.InsertUser;
 using DevFreela.Application.Models.ViewModel;
 using DevFreela.Application.Services;
 using MediatR;
@@ -37,6 +38,8 @@ namespace DevFreela.Application
                 config.RegisterServicesFromAssemblyContaining<InsertProjectCommand>());
 
             services.AddTransient<IPipelineBehavior<InsertProjectCommand, ResultViewModel<int>>, InsertProjectValidateCommandBehavior>();
+            services.AddTransient<IPipelineBehavior<InsertUserCommand, ResultViewModel<int>>, InsertUserValidationCommand>();
+            
             return services;
         }
     }

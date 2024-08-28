@@ -1,8 +1,8 @@
 ﻿namespace DevFreela.Application.Models
 {
-    public class UserSkillsInputModel
+    public class UserSkillsViewModel
     {
-        public int[] SkillIds { get; set; }
-        public int Id { get; set; }
+        public required int[] SkillIds { get; set; }
+        public required int Id { get; set; }
     }
 }

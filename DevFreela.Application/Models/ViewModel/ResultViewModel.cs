@@ -39,7 +39,7 @@ namespace DevFreela.Application.Models.ViewModel
         public static ResultViewModel<T> Success(T data)
             => new(data);
 
-        public static ResultViewModel<T> Error(string message)
+        public static new ResultViewModel<T> Error(string message)
             => new(default, false, message);
     }
 }

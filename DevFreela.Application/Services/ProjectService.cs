@@ -53,7 +53,7 @@ namespace DevFreela.Application.Services
                 .Take(size)
                 .ToList();
 
-            var model = projects.Select(ProjectItemViewModel.FromEntity).ToList();
+            var model = projects.Select(ProjectItemViewModel.ToEntity).ToList();
 
             return ResultViewModel<List<ProjectItemViewModel>>.Success(model);
         }
