@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <Folder Include="Commands\UpdateSkill\" />
+    <Folder Include="Queries\GetAllSkills\" />
   </ItemGroup>
 
 </Project>

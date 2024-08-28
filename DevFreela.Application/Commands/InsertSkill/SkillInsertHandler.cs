@@ -2,7 +2,7 @@
 using DevFreela.Infrastructure.Persistence;
 using MediatR;
 
-namespace DevFreela.Application.Commands.InsertSkills
+namespace DevFreela.Application.Commands.InsertSkill
 {
     public class SkillInsertHandler : IRequestHandler<SkillInsertCommand, ResultViewModel<int>>
     {

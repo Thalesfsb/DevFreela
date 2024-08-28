@@ -3,7 +3,7 @@ using DevFreela.Core.Entities;
 using MediatR;
 using System.Net.Sockets;
 
-namespace DevFreela.Application.Commands.InsertSkills
+namespace DevFreela.Application.Commands.InsertSkill
 {
     public class SkillInsertCommand : IRequest<ResultViewModel<int>>
     {

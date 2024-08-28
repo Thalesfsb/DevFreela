@@ -1,51 +1,57 @@
 ﻿using DevFreela.Core.Entities;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using DevFreela.Infrastructure.Persistence;
-using DevFreela.Application.Models;
-
+using MediatR;
+using DevFreela.Application.Commands.InsertSkill;
+using DevFreela.Application.Commands.DeleteProject;
+using DevFreela.Application.Commands.DeleteSkill;
 namespace DevFreela.API.Controllers
 {
     [Route("api/skills")]
     [ApiController]
     public class SkillsController : ControllerBase
     {
-        private readonly DevFreelaDbContext _context;
-        public SkillsController(DevFreelaDbContext context)
+        private readonly IMediator _mediator;
+        public SkillsController(IMediator mediator)
         {
-            _context = context;
+            _mediator = mediator;
         }
         // GET api/skills/1234
         [HttpGet("{id}")]
-        public IActionResult GetById() 
-        { 
+        public async Task<IActionResult> GetById(int id)
+        {
+            //var skill = _mediator.Send(new )
         }
         // GET api/skills
         [HttpGet]
-        public IActionResult GetAll()
+        public async Task<IActionResult> GetAll()
         {
-            var skills = _context.Skills.ToList();
 
-            return Ok(skills);
+
+            return Ok();
         }
 
         // POST api/skills
         [HttpPost]
-        public IActionResult Post(CreateSkillInputModel model)
+        public async Task<IActionResult> Post(SkillInsertCommand command)
         {
-            var skill = new Skill(model.Description);
+            var result = await _mediator.Send(command);
 
-            _context.Skills.Add(skill);
-            _context.SaveChanges();
+            if (!result.IsSuccess)
+                return BadRequest(result.Message);
 
-            return NoContent();
+            return CreatedAtAction(nameof(GetById), new { id = result.Data }, result);
         }
 
         // DELETE api/skills/1234
         [HttpDelete("{id}")]
-        public IActionResult Delete (int id)
+        public async Task<IActionResult> Delete(int id)
         {
+            var result = await _mediator.Send(new DeleteSkillCommand(id));
 
+            if (!result.IsSuccess)
+                return BadRequest(result.Message);
+
+            return NoContent();
         }
     }
 }
