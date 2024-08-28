@@ -11,13 +11,13 @@ namespace DevFreela.Application.Queries.GetSkillById
 {
     public class GetSkillByIdQuery : IRequest<ResultViewModel<SkillViewModel>>
     {
-        public GetSkillByIdQuery(int id, string description)
+        public GetSkillByIdQuery(int id)
         {
             Id = id;
-            Description = description;
+            
         }
 
         public int Id { get; set; }
-        public string Description { get; set; }
+    
     }
 }

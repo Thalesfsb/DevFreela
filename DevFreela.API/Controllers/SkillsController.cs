@@ -4,6 +4,8 @@ using MediatR;
 using DevFreela.Application.Commands.InsertSkill;
 using DevFreela.Application.Commands.DeleteProject;
 using DevFreela.Application.Commands.DeleteSkill;
+using DevFreela.Application.Queries.GetSkillById;
+using DevFreela.Application.Queries.GetAllSkills;
 namespace DevFreela.API.Controllers
 {
     [Route("api/skills")]
@@ -11,23 +13,30 @@ namespace DevFreela.API.Controllers
     public class SkillsController : ControllerBase
     {
         private readonly IMediator _mediator;
-        public SkillsController(IMediator mediator)
-        {
-            _mediator = mediator;
-        }
+        public SkillsController(IMediator mediator) 
+            => _mediator = mediator;
+
         // GET api/skills/1234
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
-            //var skill = _mediator.Send(new )
+            var result = await _mediator.Send(new GetSkillByIdQuery(id));
+
+            if (!result.IsSuccess)
+                return BadRequest(result.Message);
+
+            return Ok(result);
         }
         // GET api/skills
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
+            var result = await _mediator.Send(new GetAllSkillsQuery());
 
+            if (!result.IsSuccess)
+                return BadRequest(result.Message);
 
-            return Ok();
+            return Ok(result);
         }
 
         // POST api/skills
