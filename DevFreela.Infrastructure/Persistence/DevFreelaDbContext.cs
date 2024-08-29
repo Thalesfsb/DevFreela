@@ -1,5 +1,6 @@
 ﻿using DevFreela.Core.Entities;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection.Emit;
 
 namespace DevFreela.Infrastructure.Persistence
 {
@@ -19,22 +20,20 @@ namespace DevFreela.Infrastructure.Persistence
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            builder
-                .Entity<Skill>(e =>
-                {
-                    e.HasKey(s => s.Id);
-                });
+            // Configura a chave primária de Skill
+            builder.Entity<Skill>()
+                .HasKey(s => s.Id);
 
-            builder
-                .Entity<UserSkill>(e =>
-                {
-                    e.HasKey(us => us.Id);
+            // Configura a chave primária de UserSkill
+            builder.Entity<UserSkill>()
+                .HasKey(us => us.Id);
 
-                    e.HasOne(u => u.Skill)
-                        .WithMany(u => u.UserSkills)
-                        .HasForeignKey(s => s.IdSkill)
-                        .OnDelete(DeleteBehavior.Restrict);
-                });
+            // Configura o relacionamento um-para-muitos
+            builder.Entity<UserSkill>()
+                .HasOne(us => us.Skill) // Cada UserSkill tem um Skill
+                .WithMany(s => s.UserSkills) // Cada Skill pode ter muitos UserSkills
+                .HasForeignKey(us => us.IdSkill) // Define a chave estrangeira para o relacionamento
+                .OnDelete(DeleteBehavior.Restrict); // Configura o comportamento de exclusão
 
             builder
                 .Entity<ProjectComment>(e =>

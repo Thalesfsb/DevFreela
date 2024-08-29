@@ -6,14 +6,14 @@ namespace DevFreela.Application.Commands.InsertUserSkills
 {
     public class InsertUserSkillsCommand : IRequest<ResultViewModel<int>>
     {
-        public InsertUserSkillsCommand(int idUser, int[] idSkill)
+        public InsertUserSkillsCommand(int idUser, int idSkill)
         {
             IdUser = idUser;
             IdSkill = idSkill;
         }
 
         public int IdUser { get; private set; }
-        public int[] IdSkill { get; private set; }
+        public int IdSkill { get; private set; }
         public UserSkill ToEntity()
             => new(IdUser, IdSkill);
     }

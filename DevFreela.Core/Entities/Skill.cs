@@ -2,13 +2,13 @@
 {
     public class Skill : BaseEntity
     {
-        public Skill(string description, List<UserSkill> userSkills)
+        public Skill(string description)
         {
             Description = description;
-            UserSkills = userSkills;
+            UserSkills = [];
         }
-
-        public string Description { get; private set; } 
+        public string Description { get; private set; }
         public List<UserSkill> UserSkills { get; private set; }
+
     }
 }
