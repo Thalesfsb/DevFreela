@@ -6,7 +6,7 @@ using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DevFreela.Application.Models.ViewModel
+namespace DevFreela.Application.ViewModel
 {
     public class SkillViewModel
     {

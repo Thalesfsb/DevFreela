@@ -1,7 +1,6 @@
-﻿using DevFreela.Application.Models.ViewModel;
+﻿using DevFreela.Application.ViewModel;
 using DevFreela.Core.Entities;
 using MediatR;
-using System.Net.Sockets;
 
 namespace DevFreela.Application.Commands.Skills.InsertSkill
 {

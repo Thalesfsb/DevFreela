@@ -1,9 +1,7 @@
-﻿using DevFreela.Application.Models.ViewModel;
+﻿using DevFreela.Application.ViewModel;
 using DevFreela.Core.Entities;
 using DevFreela.Core.Repositories;
-using DevFreela.Infrastructure.Persistence;
 using MediatR;
-using Microsoft.EntityFrameworkCore;
 
 namespace DevFreela.Application.Queries.Projects.GetAllProjects
 {

@@ -1,7 +1,6 @@
-﻿using DevFreela.Application.Models.ViewModel;
-using DevFreela.Application.Notification.ProjectCreated;
+﻿using DevFreela.Application.Notification.ProjectCreated;
+using DevFreela.Application.ViewModel;
 using DevFreela.Core.Repositories;
-using DevFreela.Infrastructure.Persistence;
 using MediatR;
 
 namespace DevFreela.Application.Commands.Projects.InsertProject

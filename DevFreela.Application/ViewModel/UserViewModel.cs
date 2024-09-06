@@ -1,6 +1,6 @@
 ﻿using DevFreela.Core.Entities;
 
-namespace DevFreela.Application.Models.ViewModel
+namespace DevFreela.Application.ViewModel
 {
     public class UserViewModel
     {

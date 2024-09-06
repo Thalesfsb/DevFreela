@@ -1,4 +1,4 @@
-﻿using DevFreela.Application.Models.ViewModel;
+﻿using DevFreela.Application.ViewModel;
 using DevFreela.Core.Entities;
 using MediatR;
 

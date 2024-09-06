@@ -1,8 +1,6 @@
-﻿using DevFreela.Application.Models.ViewModel;
+﻿using DevFreela.Application.ViewModel;
 using DevFreela.Core.Repositories;
-using DevFreela.Infrastructure.Persistence;
 using MediatR;
-using Microsoft.EntityFrameworkCore;
 
 namespace DevFreela.Application.Commands.Projects.DeleteProject
 {
