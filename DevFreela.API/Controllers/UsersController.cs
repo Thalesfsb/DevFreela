@@ -1,9 +1,4 @@
-﻿using DevFreela.Core.Entities;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using DevFreela.Infrastructure.Persistence;
-using DevFreela.Application.Models;
-using DevFreela.Application.Models.ViewModel;
+﻿using Microsoft.AspNetCore.Mvc;
 using MediatR;
 using DevFreela.Application.Commands.Users.InsertUserSkills;
 using DevFreela.Application.Commands.Users.InsertUser;

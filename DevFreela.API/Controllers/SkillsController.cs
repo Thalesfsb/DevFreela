@@ -1,9 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MediatR;
 using DevFreela.Application.Commands.Skills.InsertSkill;
-using DevFreela.Application.Queries.Skills.GetSkillById;
-using DevFreela.Application.Queries.Skills.GetAllSkills;
 using DevFreela.Application.Commands.Skills.DeleteSkill;
+using DevFreela.Application.Queries.Skills.GetSkillById;
+using DevFreela.Application.Queries.User.GetAllUsers;
+using DevFreela.Application.Queries.Skills.GetAllSkills;
 namespace DevFreela.API.Controllers
 {
     [Route("api/skills")]
