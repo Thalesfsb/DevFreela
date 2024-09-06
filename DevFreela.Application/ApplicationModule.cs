@@ -1,5 +1,5 @@
-﻿using DevFreela.Application.Commands.InsertProject;
-using DevFreela.Application.Commands.InsertUser;
+﻿using DevFreela.Application.Commands.Projects.InsertProject;
+using DevFreela.Application.Commands.Users.InsertUser;
 using DevFreela.Application.Models.ViewModel;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;

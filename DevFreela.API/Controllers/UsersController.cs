@@ -5,8 +5,8 @@ using DevFreela.Infrastructure.Persistence;
 using DevFreela.Application.Models;
 using DevFreela.Application.Models.ViewModel;
 using MediatR;
-using DevFreela.Application.Commands.InsertUserSkills;
-using DevFreela.Application.Commands.InsertUser;
+using DevFreela.Application.Commands.Users.InsertUserSkills;
+using DevFreela.Application.Commands.Users.InsertUser;
 
 namespace DevFreela.API.Controllers
 {

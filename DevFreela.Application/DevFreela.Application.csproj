@@ -16,7 +16,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Commands\UpdateSkill\" />
+    <Folder Include="Commands\Skills\UpdateSkill\" />
+    <Folder Include="Queries\Comment\" />
+    <Folder Include="Queries\Userus\" />
   </ItemGroup>
 
 </Project>

@@ -1,11 +1,9 @@
-﻿using DevFreela.Core.Entities;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using MediatR;
-using DevFreela.Application.Commands.InsertSkill;
-using DevFreela.Application.Commands.DeleteProject;
-using DevFreela.Application.Commands.DeleteSkill;
-using DevFreela.Application.Queries.GetSkillById;
-using DevFreela.Application.Queries.GetAllSkills;
+using DevFreela.Application.Commands.Skills.InsertSkill;
+using DevFreela.Application.Queries.Skills.GetSkillById;
+using DevFreela.Application.Queries.Skills.GetAllSkills;
+using DevFreela.Application.Commands.Skills.DeleteSkill;
 namespace DevFreela.API.Controllers
 {
     [Route("api/skills")]
