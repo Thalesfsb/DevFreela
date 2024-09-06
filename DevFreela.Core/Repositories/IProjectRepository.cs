@@ -9,9 +9,9 @@ namespace DevFreela.Core.Repositories
 {
     public interface IProjectRepository
     {
-        Task<List<Project>> GetAll();
-        Task<Project> GetDetailsById(int id);
-        Task<Project> GetById(int id);
+        Task<List<Project?>> GetAll(Pagination entity);
+        Task<Project?> GetDetailsById(int id);
+        Task<Project?> GetById(int id);
         Task<int> Add(Project entity);
         Task Update(Project entity);
         Task AddComment(ProjectComment entity);

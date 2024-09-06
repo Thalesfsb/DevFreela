@@ -27,7 +27,7 @@ namespace DevFreela.Application.Models.ViewModel
         public decimal TotalCost { get; private set; }
         public List<string> Comments { get; private set; }
 
-        public static ProjectViewModel FromEntity(Project entity)
+        public static ProjectViewModel FromEntity(Project? entity)
             => new(entity.Id, entity.Title, entity.Description,
                 entity.IdClient, entity.IdFreelancer, entity.Client.FullName,
                 entity.Freelancer.FullName, entity.TotalCost, entity.Comments);

@@ -1,4 +1,5 @@
-﻿using DevFreela.Core.Entities;
+﻿using Azure.Core;
+using DevFreela.Core.Entities;
 using DevFreela.Core.Repositories;
 using DevFreela.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
@@ -33,28 +34,42 @@ namespace DevFreela.Infrastructure.Repositories
         }
 
         public async Task<bool> Exists(int id)
+            => await _context.Projects.AnyAsync(p => p.Id == id);
+
+        public async Task<List<Project?>> GetAll(Pagination entity)
         {
-            return await _context.Projects.AnyAsync(p => p.Id == id);
+            var projects = await _context.Projects
+                .Include(p => p.Client)
+                .Include(p => p.Freelancer)
+            .Where(p => !p.IsDeleted && (entity.Search == "" || p.Title.Contains(entity.Search) || p.Description.Contains(entity.Search)))
+            .Skip(entity.Page * entity.Size)
+            .Take(entity.Size)
+            .ToListAsync();
+
+            return projects;
         }
 
-        public async Task<List<Project>> GetAll()
+        public async Task<Project?> GetById(int id)
         {
-            throw new NotImplementedException();
+            return await _context.Projects.SingleOrDefaultAsync(p => p.Id == id);
+
         }
 
-        public async Task<Project> GetById(int id)
+        public async Task<Project?> GetDetailsById(int id)
         {
-            throw new NotImplementedException();
-        }
+            var project = await _context.Projects
+                .Include(p => p.Client)
+                .Include(p => p.Freelancer)
+                .Include(p => p.Comments)
+                .SingleOrDefaultAsync(p => p.Id == id);
 
-        public async Task<Project> GetDetailsById(int id)
-        {
-            throw new NotImplementedException();
+            return project;
         }
 
         public async Task Update(Project entity)
         {
-            throw new NotImplementedException();
+            _context.Projects.Update(entity);
+            await _context.SaveChangesAsync();
         }
     }
 }
