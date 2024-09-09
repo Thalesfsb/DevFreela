@@ -1,6 +1,7 @@
 ﻿using DevFreela.Core.Entities;
 using DevFreela.Core.Repositories;
 using DevFreela.Infrastructure.Persistence;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,34 +17,58 @@ namespace DevFreela.Infrastructure.Repositories
         {
             _dbContext = dbContext;
         }
-        public Task<int> Add(User entity)
+        public async Task<int> Add(User entity)
         {
-            throw new NotImplementedException();
+            await _dbContext.Users.AddAsync(entity);
+            return await _dbContext.SaveChangesAsync();
+
         }
 
-        public Task Delete(int id)
+        public async Task<int> Delete(User entity)
         {
-            throw new NotImplementedException();
+            await _dbContext.Users.AddAsync(entity);
+            return await _dbContext.SaveChangesAsync();
+
+        }
+        public async Task<bool> Exists(int id)
+           => await _dbContext.Projects.AnyAsync(u => u.Id == id);
+        public async Task<List<User>> GetAll(Pagination entity)
+        {
+            var users = await _dbContext.Users
+                .Include(p => p.OwnedProjects)
+                .Include(p => p.FreelanceProjects)
+                .Include(s => s.Skills)
+                .Include(c => c.Comments)
+                .Where(u => !u.IsDeleted && (entity.Search == "" || u.FullName.Contains(entity.Search)))
+                .Skip(entity.Page * entity.Size)
+                .Take(entity.Size)
+                .ToListAsync();
+
+            return users;
         }
 
-        public Task<List<User>> GetAll(Pagination entity)
+        public async Task<User> GetById(int id)
         {
-            throw new NotImplementedException();
+            return await _dbContext.Users.SingleOrDefaultAsync(u => u.Id == id) ?? new User("Default", "default@default.com", DateTime.Now);
+
         }
 
-        public Task<User> GetById(int id)
+        public async Task<User> GetDetails(int id)
         {
-            throw new NotImplementedException();
+            var user = await _dbContext.Users
+                .Include(p => p.OwnedProjects)
+                .Include(p => p.FreelanceProjects)
+                .Include(s => s.Skills)
+                .Include(c => c.Comments)
+                .SingleOrDefaultAsync(u => !u.IsDeleted && u.Id == id);
+
+            return user;
         }
 
-        public Task<User> GetDetails(int id)
+        public async Task<int> Update(User entity)
         {
-            throw new NotImplementedException();
-        }
-
-        public Task Update(User entity)
-        {
-            throw new NotImplementedException();
+            await _dbContext.Users.AddAsync(entity);
+            return await _dbContext.SaveChangesAsync();
         }
     }
 }
