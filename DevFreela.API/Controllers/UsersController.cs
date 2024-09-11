@@ -2,6 +2,9 @@
 using MediatR;
 using DevFreela.Application.Commands.Users.InsertUserSkills;
 using DevFreela.Application.Commands.Users.InsertUser;
+using DevFreela.Application.Queries.Skills.GetSkillById;
+using DevFreela.Application.Queries.Users.GetUserById;
+using DevFreela.Application.Queries.Skills.GetAllSkills;
 
 namespace DevFreela.API.Controllers
 {
@@ -15,11 +18,25 @@ namespace DevFreela.API.Controllers
             _mediator = mediator;
         }
 
-        [HttpGet("{id}")]
-        public IActionResult GetById(int id)
+        [HttpGet]
+        public async Task<IActionResult> GetAll(string search, int size, int page)
         {
+            var result = await _mediator.Send(new GetAllSkillsQuery(search, size, page));
 
-            return Ok();
+            if (!result.IsSuccess)
+                return BadRequest(result.Message);
+
+            return Ok(result);
+        }
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetById(int id)
+        {
+            var result = await _mediator.Send(new GetUserByIdQuery(id));
+
+            if (!result.IsSuccess)
+                return BadRequest(result.Message);
+
+            return Ok(result);
         }
 
         // POST api/users
@@ -35,18 +52,17 @@ namespace DevFreela.API.Controllers
         }
 
         [HttpPost("{id}/skills")]
-        public IActionResult PostSkills(int id, InsertUserSkillsCommand command)
+        public async Task<IActionResult> PostSkills(int id, InsertUserSkillsCommand command)
         {
             var result = command.ToEntity();
 
-            _mediator.Send(result);
-            
+            await _mediator.Send(result);
 
             return NoContent();
         }
 
         [HttpPut("{id}/profile-picture")]
-        public IActionResult PostProfilePicture(int id, IFormFile file)
+        public async Task<IActionResult> PostProfilePicture(int id, IFormFile file)
         {
             var description = $"FIle: {file.FileName}, Size: {file.Length}";
 

@@ -11,7 +11,7 @@ namespace DevFreela.Core.Repositories
     {
         Task<int> Add(Skill entity);
         Task<List<Skill>> GetAll(Pagination entity);
-        Task<Skill> Get(int id);
+        Task<Skill> GetById(int id);
         Task  Update(Skill entity);
         Task Delete(Skill entity);
 

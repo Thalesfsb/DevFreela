@@ -1,4 +1,5 @@
 ﻿using DevFreela.Application.ViewModel;
+using DevFreela.Core.Repositories;
 using DevFreela.Infrastructure.Persistence;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -7,16 +8,16 @@ namespace DevFreela.Application.Queries.Skills.GetSkillById
 {
     public class GetSkillByIdHandler : IRequestHandler<GetSkillByIdQuery, ResultViewModel<SkillViewModel>>
     {
-        private readonly DevFreelaDbContext _context;
+        private readonly ISkillRepository _repository;
 
-        public GetSkillByIdHandler(DevFreelaDbContext context)
+        public GetSkillByIdHandler(ISkillRepository repository)
         {
-            _context = context;
+            _repository = repository;
         }
+
         public async Task<ResultViewModel<SkillViewModel>> Handle(GetSkillByIdQuery request, CancellationToken cancellationToken)
         {
-            var result = await _context.Skills
-                .SingleOrDefaultAsync(s => s.Id == request.Id);
+            var result = await _repository.GetById(request.Id);
 
             if (result is null)
                 return ResultViewModel<SkillViewModel>.Error("Skill não existe");

@@ -5,6 +5,7 @@ using DevFreela.Application.Commands.Skills.DeleteSkill;
 using DevFreela.Application.Queries.Skills.GetSkillById;
 using DevFreela.Application.Queries.User.GetAllUsers;
 using DevFreela.Application.Queries.Skills.GetAllSkills;
+using DevFreela.Core.Entities;
 namespace DevFreela.API.Controllers
 {
     [Route("api/skills")]
@@ -12,7 +13,7 @@ namespace DevFreela.API.Controllers
     public class SkillsController : ControllerBase
     {
         private readonly IMediator _mediator;
-        public SkillsController(IMediator mediator) 
+        public SkillsController(IMediator mediator)
             => _mediator = mediator;
 
         // GET api/skills/1234
@@ -28,9 +29,9 @@ namespace DevFreela.API.Controllers
         }
         // GET api/skills
         [HttpGet]
-        public async Task<IActionResult> GetAll()
+        public async Task<IActionResult> GetAll(string search, int size, int page)
         {
-            var result = await _mediator.Send(new GetAllSkillsQuery());
+            var result = await _mediator.Send(new GetAllSkillsQuery(search, size, page));
 
             if (!result.IsSuccess)
                 return BadRequest(result.Message);

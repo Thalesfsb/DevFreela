@@ -28,7 +28,7 @@ namespace DevFreela.Infrastructure.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public async Task<Skill> Get(int id)
+        public async Task<Skill> GetById(int id)
         {
             return await _context.Skills.SingleOrDefaultAsync(s => s.Id == id) ?? new Skill();
         }

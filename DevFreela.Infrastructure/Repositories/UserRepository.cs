@@ -2,11 +2,6 @@
 using DevFreela.Core.Repositories;
 using DevFreela.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DevFreela.Infrastructure.Repositories
 {
@@ -26,7 +21,11 @@ namespace DevFreela.Infrastructure.Repositories
             return await _context.SaveChangesAsync();
 
         }
-
+        public async Task<int> AddUserSkill(UserSkill entity)
+        {
+            await _context.UserSkills.AddAsync(entity);
+            return await _context.SaveChangesAsync();
+        }
         public async Task<int> Delete(User entity)
         {
             await _context.Users.AddAsync(entity);
@@ -49,13 +48,11 @@ namespace DevFreela.Infrastructure.Repositories
 
             return users;
         }
-
         public async Task<User> GetById(int id)
         {
             return await _context.Users.SingleOrDefaultAsync(u => u.Id == id) ?? new User();
 
         }
-
         public async Task<User> GetDetails(int id)
         {
             var user = await _context.Users
@@ -67,7 +64,6 @@ namespace DevFreela.Infrastructure.Repositories
 
             return user;
         }
-
         public async Task<int> Update(User entity)
         {
             await _context.Users.AddAsync(entity);

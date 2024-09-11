@@ -10,6 +10,7 @@ namespace DevFreela.Core.Repositories
     public interface IUserRepository
     {
         Task<int> Add(User entity);
+        Task<int> AddUserSkill(UserSkill entity);
         Task<int> Update(User entity);
         Task<List<User>> GetAll(Pagination entity);
         Task<User> GetById(int id);
