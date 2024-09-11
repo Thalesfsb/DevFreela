@@ -1,40 +1,54 @@
 ﻿using DevFreela.Core.Entities;
 using DevFreela.Core.Repositories;
 using DevFreela.Infrastructure.Persistence;
+using Microsoft.EntityFrameworkCore;
 
 namespace DevFreela.Infrastructure.Repositories
 {
     public class SkillRepository : ISkillRepository
     {
-        private readonly DevFreelaDbContext _dbContext;
-        public SkillRepository(DevFreelaDbContext dbContext)
+        private readonly DevFreelaDbContext _context;
+
+        public SkillRepository(DevFreelaDbContext context)
         {
-            _dbContext = dbContext;
+            if (_context is null)
+                throw new InvalidOperationException("O contexto do banco de dados não está disponível.");
+
+            _context = context;
         }
-        public async Task<int> Add(Skill skill)
+        public async Task<int> Add(Skill entity)
         {
-            await _dbContext.Skills.AddAsync(skill);
-            return await _dbContext.SaveChangesAsync();
+            await _context.Skills.AddAsync(entity);
+            return await _context.SaveChangesAsync();
         }
 
-        public async Task Delete(int id)
+        public async Task Delete(Skill entity)
         {
-            throw new NotImplementedException();
+            _context.Skills.Update(entity);
+            await _context.SaveChangesAsync();
         }
 
         public async Task<Skill> Get(int id)
         {
-            throw new NotImplementedException();
+            return await _context.Skills.SingleOrDefaultAsync(s => s.Id == id) ?? new Skill();
         }
 
-        public async Task<Skill> GetAll(Pagination pagination)
+        public async Task<List<Skill>> GetAll(Pagination entity)
         {
-            throw new NotImplementedException();
+            var skills = await _context.Skills
+              .Include(s => s.UserSkills)
+              .Where(p => !p.IsDeleted && (entity.Search == "" || p.Description.Contains(entity.Search)))
+              .Skip(entity.Page * entity.Size)
+              .Take(entity.Size)
+              .ToListAsync();
+
+            return skills ?? new List<Skill>();
         }
 
-        public async Task<Skill> Update(Skill skill)
+        public async Task Update(Skill entity)
         {
-            throw new NotImplementedException();
+            _context.Skills.Update(entity);
+            await _context.SaveChangesAsync();
         }
     }
 }

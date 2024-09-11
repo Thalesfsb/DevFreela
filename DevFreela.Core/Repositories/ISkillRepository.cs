@@ -9,11 +9,11 @@ namespace DevFreela.Core.Repositories
 {
     public interface ISkillRepository
     {
-        Task<int> Add(Skill skill);
-        Task<Skill> GetAll(Pagination pagination);
+        Task<int> Add(Skill entity);
+        Task<List<Skill>> GetAll(Pagination entity);
         Task<Skill> Get(int id);
-        Task<Skill> Update(Skill skill);
-        Task Delete(int id);
+        Task  Update(Skill entity);
+        Task Delete(Skill entity);
 
     }
 }

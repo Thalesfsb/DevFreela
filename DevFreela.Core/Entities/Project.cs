@@ -4,7 +4,7 @@ namespace DevFreela.Core.Entities
 {
     public class Project : BaseEntity
     {
-        protected Project() { }
+        public Project() { }
         public Project(string title, string description, int idClient, int idFreelancer, decimal totalCost)
             : base()
         {
@@ -18,8 +18,8 @@ namespace DevFreela.Core.Entities
             Comments = [];
         }
 
-        public string Title { get; private set; } 
-        public string Description { get; private set; }
+        public string Title { get; private set; } = string.Empty;
+        public string Description { get; private set; } = string.Empty;
         public int IdClient { get; private set; }
         public User? Client { get; private set; }
         public int IdFreelancer { get; private set; }
@@ -28,7 +28,7 @@ namespace DevFreela.Core.Entities
         public DateTime? StartedAt { get; private set; }
         public DateTime? CompletedAt { get; private set; }
         public ProjectStatusEnum Status { get; private set; }
-        public List<ProjectComment> Comments { get; private set; }
+        public List<ProjectComment> Comments { get; private set; } = new List<ProjectComment>();
 
         public void Cancel()
         {

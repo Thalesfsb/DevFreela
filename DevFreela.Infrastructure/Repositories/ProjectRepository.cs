@@ -17,6 +17,9 @@ namespace DevFreela.Infrastructure.Repositories
 
         public ProjectRepository(DevFreelaDbContext context)
         {
+            if (_context is null)
+                throw new InvalidOperationException("O contexto do banco de dados não está disponível.");
+
             _context = context;
         }
         public async Task<int> Add(Project entity)
@@ -36,7 +39,7 @@ namespace DevFreela.Infrastructure.Repositories
         public async Task<bool> Exists(int id)
             => await _context.Projects.AnyAsync(p => p.Id == id);
 
-        public async Task<List<Project?>> GetAll(Pagination entity)
+        public async Task<List<Project>> GetAll(Pagination entity)
         {
             var projects = await _context.Projects
                 .Include(p => p.Client)
@@ -46,16 +49,16 @@ namespace DevFreela.Infrastructure.Repositories
             .Take(entity.Size)
             .ToListAsync();
 
-            return projects;
+            return projects ?? new List<Project>();
         }
 
-        public async Task<Project?> GetById(int id)
+        public async Task<Project> GetById(int id)
         {
-            return await _context.Projects.SingleOrDefaultAsync(p => p.Id == id);
+            return await _context.Projects.SingleOrDefaultAsync(p => p.Id == id) ?? new Project();
 
         }
 
-        public async Task<Project?> GetDetailsById(int id)
+        public async Task<Project> GetDetailsById(int id)
         {
             var project = await _context.Projects
                 .Include(p => p.Client)
@@ -63,7 +66,7 @@ namespace DevFreela.Infrastructure.Repositories
                 .Include(p => p.Comments)
                 .SingleOrDefaultAsync(p => p.Id == id);
 
-            return project;
+            return project ?? new Project();
         }
 
         public async Task Update(Project entity)

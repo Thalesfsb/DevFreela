@@ -12,8 +12,8 @@
 
         public string Content { get; private set; }
         public int IdProject { get; private set; }
-        public Project Project { get; private set; }
+        public Project Project { get; private set; } = new Project();
         public int IdUser { get; private set; }
-        public User User { get; private set; }
+        public User User { get; private set; } = new User();
     }
 }

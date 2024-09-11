@@ -9,9 +9,9 @@
         }
 
         public int IdUser { get; private set; }
-        public User User { get; private set; }
+        public User User { get; private set; } = new User();
         public int IdSkill { get; private set; }
-        public Skill Skill { get; private set; }
+        public Skill Skill { get; private set; } = new Skill();
 
     }
 }

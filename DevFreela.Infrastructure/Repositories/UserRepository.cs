@@ -12,29 +12,32 @@ namespace DevFreela.Infrastructure.Repositories
 {
     public class UserRepository : IUserRepository
     {
-        private readonly DevFreelaDbContext _dbContext;
-        public UserRepository(DevFreelaDbContext dbContext)
+        private readonly DevFreelaDbContext _context;
+        public UserRepository(DevFreelaDbContext context)
         {
-            _dbContext = dbContext;
+            if (_context is null)
+                throw new InvalidOperationException("O contexto do banco de dados não está disponível.");
+
+            _context = context;
         }
         public async Task<int> Add(User entity)
         {
-            await _dbContext.Users.AddAsync(entity);
-            return await _dbContext.SaveChangesAsync();
+            await _context.Users.AddAsync(entity);
+            return await _context.SaveChangesAsync();
 
         }
 
         public async Task<int> Delete(User entity)
         {
-            await _dbContext.Users.AddAsync(entity);
-            return await _dbContext.SaveChangesAsync();
+            await _context.Users.AddAsync(entity);
+            return await _context.SaveChangesAsync();
 
         }
         public async Task<bool> Exists(int id)
-           => await _dbContext.Projects.AnyAsync(u => u.Id == id);
+           => await _context.Projects.AnyAsync(u => u.Id == id);
         public async Task<List<User>> GetAll(Pagination entity)
         {
-            var users = await _dbContext.Users
+            var users = await _context.Users
                 .Include(p => p.OwnedProjects)
                 .Include(p => p.FreelanceProjects)
                 .Include(s => s.Skills)
@@ -49,26 +52,26 @@ namespace DevFreela.Infrastructure.Repositories
 
         public async Task<User> GetById(int id)
         {
-            return await _dbContext.Users.SingleOrDefaultAsync(u => u.Id == id) ?? new User("Default", "default@default.com", DateTime.Now);
+            return await _context.Users.SingleOrDefaultAsync(u => u.Id == id) ?? new User();
 
         }
 
         public async Task<User> GetDetails(int id)
         {
-            var user = await _dbContext.Users
+            var user = await _context.Users
                 .Include(p => p.OwnedProjects)
                 .Include(p => p.FreelanceProjects)
                 .Include(s => s.Skills)
                 .Include(c => c.Comments)
-                .SingleOrDefaultAsync(u => !u.IsDeleted && u.Id == id);
+                .SingleOrDefaultAsync(u => !u.IsDeleted && u.Id == id) ?? new User();
 
             return user;
         }
 
         public async Task<int> Update(User entity)
         {
-            await _dbContext.Users.AddAsync(entity);
-            return await _dbContext.SaveChangesAsync();
+            await _context.Users.AddAsync(entity);
+            return await _context.SaveChangesAsync();
         }
     }
 }

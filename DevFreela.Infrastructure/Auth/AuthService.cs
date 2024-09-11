@@ -25,7 +25,7 @@ namespace DevFreela.Infrastructure.Auth
             var audience = _configuration["Jwt:Audience"];
             var key = _configuration["Jwt:Key"];
 
-            var securitykey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key));
+            var securitykey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key??""));
             var credentials = new SigningCredentials(securitykey, SecurityAlgorithms.HmacSha256);
 
             var claims = new List<Claim>

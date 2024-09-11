@@ -20,6 +20,8 @@ namespace DevFreela.Application.Commands.Users.InsertUser
             if (await _repository.Exists(request.Id))
                 return ResultViewModel<int>.Error("Usuario já existe");
 
+            await _repository.Add(result);
+
             return ResultViewModel<int>.Success(request.Id);
         }
     }
