@@ -20,7 +20,6 @@ namespace DevFreela.Infrastructure.Repositories
         {
             await _context.Users.AddAsync(entity);
             return await _context.SaveChangesAsync();
-
         }
         public async Task<int> AddUserSkill(UserSkill entity)
         {
@@ -31,10 +30,11 @@ namespace DevFreela.Infrastructure.Repositories
         {
             await _context.Users.AddAsync(entity);
             return await _context.SaveChangesAsync();
-
         }
         public async Task<bool> Exists(int id)
-           => await _context.Projects.AnyAsync(u => u.Id == id);
+        {
+            return await _context.Projects.AnyAsync(u => u.Id == id);
+        }
         public async Task<List<User>> GetAll(Pagination entity)
         {
             return await _context.Users
