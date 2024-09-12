@@ -6,10 +6,12 @@ using DevFreela.Application.Queries.Skills.GetSkillById;
 using DevFreela.Application.Queries.User.GetAllUsers;
 using DevFreela.Application.Queries.Skills.GetAllSkills;
 using DevFreela.Core.Entities;
+using Microsoft.AspNetCore.Authorization;
 namespace DevFreela.API.Controllers
 {
     [Route("api/skills")]
     [ApiController]
+    [Authorize]
     public class SkillsController : ControllerBase
     {
         private readonly IMediator _mediator;

@@ -6,11 +6,13 @@ using DevFreela.Application.Queries.Skills.GetSkillById;
 using DevFreela.Application.Queries.Users.GetUserById;
 using DevFreela.Application.Queries.Skills.GetAllSkills;
 using DevFreela.Application.Commands.Login;
+using Microsoft.AspNetCore.Authorization;
 
 namespace DevFreela.API.Controllers
 {
     [ApiController]
     [Route("api/users")]
+    [Authorize]
     public class UsersController : ControllerBase
     {
         private readonly IMediator _mediator;
@@ -42,6 +44,7 @@ namespace DevFreela.API.Controllers
 
         // POST api/users
         [HttpPost]
+        [AllowAnonymous]
         public async Task<IActionResult> Post(InsertUserCommand command)
         {
             var result = await _mediator.Send(command);
@@ -74,6 +77,7 @@ namespace DevFreela.API.Controllers
 
         // api/user/login
         [HttpPut("api/login")]
+        [AllowAnonymous]
         public async Task<IActionResult> Login([FromBody] UserLoginCommand command)
         {
             var result = await _mediator.Send(command);
