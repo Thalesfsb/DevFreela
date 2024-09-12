@@ -46,27 +46,19 @@ internal class Program
             });
 
 
-        var app = builder.Build();
-
-        // Configure the HTTP request pipeline.
-        if (app.Environment.IsDevelopment())
+        builder.Services.AddSwaggerGen(c =>
         {
-            app.UseSwagger();
-            app.UseSwaggerUI();
-
-            builder.Services.AddSwaggerGen(c =>
+            c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
             {
-                c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
-                {
-                    Name = "Authorization",
-                    Type = SecuritySchemeType.ApiKey,
-                    Scheme = "Bearer",
-                    BearerFormat = "JWT",
-                    In = ParameterLocation.Header,
-                    Description = "JWT Authorization header usando o esquema Bearer."
-                });
+                Name = "Authorization",
+                Type = SecuritySchemeType.ApiKey,
+                Scheme = "Bearer",
+                BearerFormat = "JWT",
+                In = ParameterLocation.Header,
+                Description = "JWT Authorization header usando o esquema Bearer."
+            });
 
-                c.AddSecurityRequirement(new OpenApiSecurityRequirement
+            c.AddSecurityRequirement(new OpenApiSecurityRequirement
                 {
                     {
                         new OpenApiSecurityScheme
@@ -80,9 +72,16 @@ internal class Program
                         new string[] { }
                     }
                 });
-            });
-        }
+        });
 
+        var app = builder.Build();
+
+        // Configure the HTTP request pipeline.
+        if (app.Environment.IsDevelopment())
+        {
+            app.UseSwagger();
+            app.UseSwaggerUI();
+        }
 
         app.UseExceptionHandler();
 
