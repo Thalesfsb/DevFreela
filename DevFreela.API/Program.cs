@@ -87,8 +87,9 @@ internal class Program
 
         app.UseHttpsRedirection();
 
-        app.UseAuthorization();
+        // Devem respeitar essa ordem
         app.UseAuthentication();
+        app.UseAuthorization();
 
         app.MapControllers();
 
