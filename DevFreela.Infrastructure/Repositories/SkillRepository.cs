@@ -38,7 +38,7 @@ namespace DevFreela.Infrastructure.Repositories
             var skills = await _context.Skills
               .Include(s => s.UserSkills)
               .Where(p => !p.IsDeleted && (entity.Search == "" || p.Description.Contains(entity.Search)))
-              .Skip(entity.Page * entity.Size)
+              .Skip((entity.Page - 1) * entity.Size)
               .Take(entity.Size)
               .ToListAsync();
 

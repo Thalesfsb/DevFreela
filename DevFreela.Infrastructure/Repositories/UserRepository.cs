@@ -43,7 +43,7 @@ namespace DevFreela.Infrastructure.Repositories
                 .Include(s => s.Skills)
                 .Include(c => c.Comments)
                 .Where(u => !u.IsDeleted && (entity.Search == "" || u.FullName.Contains(entity.Search)))
-                .Skip(entity.Page * entity.Size)
+                .Skip((entity.Page - 1) * entity.Size)
                 .Take(entity.Size)
                 .ToListAsync();
         }

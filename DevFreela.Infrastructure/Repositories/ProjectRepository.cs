@@ -45,7 +45,7 @@ namespace DevFreela.Infrastructure.Repositories
                 .Include(p => p.Client)
                 .Include(p => p.Freelancer)
             .Where(p => !p.IsDeleted && (entity.Search == "" || p.Title.Contains(entity.Search) || p.Description.Contains(entity.Search)))
-            .Skip(entity.Page * entity.Size)
+            .Skip((entity.Page - 1) * entity.Size)
             .Take(entity.Size)
             .ToListAsync();
 
