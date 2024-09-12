@@ -17,5 +17,6 @@ namespace DevFreela.Core.Repositories
         Task<User> GetDetails(int id);
         Task<int> Delete(User entity);
         Task<bool> Exists(int id);
+        Task<User> GetUserByEmailAndPassword(string email, string passwordHash);
     }
 }

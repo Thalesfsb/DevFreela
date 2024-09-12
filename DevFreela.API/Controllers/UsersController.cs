@@ -5,6 +5,7 @@ using DevFreela.Application.Commands.Users.InsertUser;
 using DevFreela.Application.Queries.Skills.GetSkillById;
 using DevFreela.Application.Queries.Users.GetUserById;
 using DevFreela.Application.Queries.Skills.GetAllSkills;
+using DevFreela.Application.Commands.Login;
 
 namespace DevFreela.API.Controllers
 {
@@ -69,6 +70,17 @@ namespace DevFreela.API.Controllers
             // Processar a imagem
 
             return Ok(description);
+        }
+        // api/user/login
+        [HttpPost]
+        public async Task<IActionResult> Login([FromBody] UserLoginCommand command)
+        {
+            var result = await _mediator.Send(command);
+
+            if (result is null)
+                return BadRequest(result);
+
+            return Ok(result);
         }
     }
 }

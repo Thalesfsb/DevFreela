@@ -36,7 +36,7 @@ namespace DevFreela.Infrastructure.Repositories
            => await _context.Projects.AnyAsync(u => u.Id == id);
         public async Task<List<User>> GetAll(Pagination entity)
         {
-            var users = await _context.Users
+            return await _context.Users
                 .Include(p => p.OwnedProjects)
                 .Include(p => p.FreelanceProjects)
                 .Include(s => s.Skills)
@@ -45,25 +45,27 @@ namespace DevFreela.Infrastructure.Repositories
                 .Skip(entity.Page * entity.Size)
                 .Take(entity.Size)
                 .ToListAsync();
-
-            return users;
         }
         public async Task<User> GetById(int id)
         {
             return await _context.Users.SingleOrDefaultAsync(u => u.Id == id) ?? new User();
-
         }
         public async Task<User> GetDetails(int id)
         {
-            var user = await _context.Users
+            return await _context.Users
                 .Include(p => p.OwnedProjects)
                 .Include(p => p.FreelanceProjects)
                 .Include(s => s.Skills)
                 .Include(c => c.Comments)
                 .SingleOrDefaultAsync(u => !u.IsDeleted && u.Id == id) ?? new User();
-
-            return user;
         }
+
+        public async Task<User> GetUserByEmailAndPassword(string email, string passwordHash)
+        {
+            return await _context.Users
+                .SingleOrDefaultAsync(u => u.Email == email && u.Password == passwordHash) ?? new User();
+        }
+
         public async Task<int> Update(User entity)
         {
             await _context.Users.AddAsync(entity);

@@ -8,7 +8,7 @@ namespace DevFreela.Core.Services
 {
     public interface IAuthService
     {
-        string GenerateJwtToker(string email, string role);
+        string GenerateJwtToken(string email, string role);
         string ComputeSha256Hash(string password);
     }
 }
