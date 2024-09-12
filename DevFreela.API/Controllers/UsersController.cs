@@ -71,14 +71,15 @@ namespace DevFreela.API.Controllers
 
             return Ok(description);
         }
+
         // api/user/login
-        [HttpPost]
+        [HttpPut("api/login")]
         public async Task<IActionResult> Login([FromBody] UserLoginCommand command)
         {
             var result = await _mediator.Send(command);
 
             if (result is null)
-                return BadRequest(result);
+                return BadRequest("Login invalido");
 
             return Ok(result);
         }

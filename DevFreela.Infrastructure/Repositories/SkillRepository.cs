@@ -11,7 +11,7 @@ namespace DevFreela.Infrastructure.Repositories
 
         public SkillRepository(DevFreelaDbContext context)
         {
-            if (_context is null)
+            if (context is null)
                 throw new InvalidOperationException("O contexto do banco de dados não está disponível.");
 
             _context = context;

@@ -1,6 +1,7 @@
 ﻿using DevFreela.Core.Entities;
 using DevFreela.Core.Repositories;
 using DevFreela.Infrastructure.Persistence;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 
 namespace DevFreela.Infrastructure.Repositories
@@ -10,7 +11,7 @@ namespace DevFreela.Infrastructure.Repositories
         private readonly DevFreelaDbContext _context;
         public UserRepository(DevFreelaDbContext context)
         {
-            if (_context is null)
+            if (context is null)
                 throw new InvalidOperationException("O contexto do banco de dados não está disponível.");
 
             _context = context;
