@@ -30,8 +30,7 @@ namespace DevFreela.Application
              * ele vai buscar em todo o projeto application pelos os comandos
              */
              
-            services.AddMediatR(config =>
-                config.RegisterServicesFromAssemblyContaining<InsertProjectCommand>());
+            services.AddMediatR(config => config.RegisterServicesFromAssemblyContaining<InsertProjectCommand>());
 
             services.AddTransient<IPipelineBehavior<InsertProjectCommand, ResultViewModel<int>>, InsertProjectValidateCommandBehavior>();
             services.AddTransient<IPipelineBehavior<InsertUserCommand, ResultViewModel<int>>, InsertUserValidationCommand>();
