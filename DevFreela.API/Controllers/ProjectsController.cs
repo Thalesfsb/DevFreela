@@ -7,11 +7,13 @@ using DevFreela.Application.Queries.Projects.GetAllProjects;
 using DevFreela.Application.Queries.Projects.GetProjectById;
 using DevFreela.Application.Commands.Comment.InsertComment;
 using DevFreela.Application.Commands.Projects.DeleteProject;
+using Microsoft.AspNetCore.Authorization;
 
 namespace DevFreela.API.Controllers
 {
     [ApiController]
     [Route("api/projects")]
+    [Authorize]
     public class ProjectsController : ControllerBase
     {
         private readonly IMediator _mediator;
