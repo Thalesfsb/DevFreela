@@ -49,7 +49,7 @@ namespace DevFreela.Infrastructure.Repositories
         }
         public async Task<User> GetById(int id)
         {
-            return await _context.Users.SingleOrDefaultAsync(u => u.Id == id) ?? new User();
+            return await _context.Users.SingleOrDefaultAsync(u => u.Id == id);
         }
         public async Task<User> GetDetails(int id)
         {
@@ -58,13 +58,13 @@ namespace DevFreela.Infrastructure.Repositories
                 .Include(p => p.FreelanceProjects)
                 .Include(s => s.Skills)
                 .Include(c => c.Comments)
-                .SingleOrDefaultAsync(u => !u.IsDeleted && u.Id == id) ?? new User();
+                .SingleOrDefaultAsync(u => !u.IsDeleted && u.Id == id);
         }
 
         public async Task<User> GetUserByEmailAndPassword(string email, string passwordHash)
         {
             return await _context.Users
-                .SingleOrDefaultAsync(u => u.Email == email && u.Password == passwordHash) ?? new User();
+                .SingleOrDefaultAsync(u => u.Email == email && u.Password == passwordHash);
         }
 
         public async Task<int> Update(User entity)

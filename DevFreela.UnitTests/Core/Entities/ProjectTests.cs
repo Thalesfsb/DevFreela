@@ -14,6 +14,8 @@ namespace DevFreela.UnitTests.Core.Entities
         [Fact]
         public void TestIfProjectWorks()
         {
+            // Padrão AAA - Arrange - Act - Assert visa a organização do teste unitário
+            // Padrão Given_When_Then
             var project = new Project("Nome de teste", "Descrição de teste", 1, 2, 100000);
 
             // Validando a inicializacao do objeto

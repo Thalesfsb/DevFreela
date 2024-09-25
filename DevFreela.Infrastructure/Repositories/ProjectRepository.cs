@@ -39,8 +39,10 @@ namespace DevFreela.Infrastructure.Repositories
         public async Task<bool> Exists(int id)
             => await _context.Projects.AnyAsync(p => p.Id == id);
 
-        public async Task<List<Project>> GetAll(Pagination entity)
+        public async Task<List<Project>> GetAllAsync(Pagination entity)
         {
+            var test = _context.Projects.ToListAsync();
+
             var projects = await _context.Projects
                 .Include(p => p.Client)
                 .Include(p => p.Freelancer)
@@ -49,12 +51,12 @@ namespace DevFreela.Infrastructure.Repositories
             .Take(entity.Size)
             .ToListAsync();
 
-            return projects ?? new List<Project>();
+            return projects;
         }
 
         public async Task<Project> GetById(int id)
         {
-            return await _context.Projects.SingleOrDefaultAsync(p => p.Id == id) ?? new Project();
+            return await _context.Projects.SingleOrDefaultAsync(p => p.Id == id);
 
         }
 
@@ -66,7 +68,7 @@ namespace DevFreela.Infrastructure.Repositories
                 .Include(p => p.Comments)
                 .SingleOrDefaultAsync(p => p.Id == id);
 
-            return project ?? new Project();
+            return project;
         }
 
         public async Task Update(Project entity)

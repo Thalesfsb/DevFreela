@@ -30,7 +30,7 @@ namespace DevFreela.Infrastructure.Repositories
 
         public async Task<Skill> GetById(int id)
         {
-            return await _context.Skills.SingleOrDefaultAsync(s => s.Id == id) ?? new Skill();
+            return await _context.Skills.SingleOrDefaultAsync(s => s.Id == id);
         }
 
         public async Task<List<Skill>> GetAll(Pagination entity)

@@ -17,7 +17,7 @@ namespace DevFreela.Application.Queries.Projects.GetAllProjects
         {
             var pagination = new Pagination(request.Search, request.Size, request.Page);
 
-            var projects = await _repository.GetAll(pagination);
+            var projects = await _repository.GetAllAsync(pagination);
 
             if (projects is null)
                 return ResultViewModel<List<ProjectViewModel>>.Error("Projeto não existe");

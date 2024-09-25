@@ -29,7 +29,7 @@ namespace DevFreela.Application.ViewModel
 
         public static ProjectViewModel FromEntity(Project entity)
             => new(entity.Id, entity.Title, entity.Description,
-                entity.IdClient, entity.IdFreelancer, entity.Client?.FullName??"",
-                entity.Freelancer?.FullName??"", entity.TotalCost, entity.Comments);
+                entity.IdClient, entity.IdFreelancer, entity.Client.FullName,
+                entity.Freelancer.FullName, entity.TotalCost, entity.Comments);
     }
 }
