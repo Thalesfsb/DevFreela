@@ -15,7 +15,7 @@ namespace DevFreela.Core.Entities
             Page = page;
         }
 
-        public string Search { get; set; }
+        public string? Search { get; set; }
         public int Size { get; set; }
         public int Page { get; set; }
     }

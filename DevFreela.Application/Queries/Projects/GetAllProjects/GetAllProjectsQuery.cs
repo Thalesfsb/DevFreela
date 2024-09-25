@@ -12,7 +12,7 @@ namespace DevFreela.Application.Queries.Projects.GetAllProjects
             Page = page;
         }
 
-        public string Search { get; set; }
+        public string? Search { get; set; }
         public int Size { get; set; }
         public int Page { get; set; }
 

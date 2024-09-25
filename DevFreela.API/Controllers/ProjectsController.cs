@@ -23,7 +23,7 @@ namespace DevFreela.API.Controllers
 
         // GET api/projects?search=crm
         [HttpGet]
-        [Authorize(Roles = "Client, Freelancer")]
+        [Authorize(Roles = "Client, Freelancer, Desenvolvedor")]
         public async Task<IActionResult> Get(string search, int page, int size)
         {
             var result = await _mediator.Send(new GetAllProjectsQuery(search, page, size));
