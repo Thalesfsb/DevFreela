@@ -67,6 +67,3 @@ O **DevFreela** é uma aplicação backend desenvolvida em .NET Core como parte 
 
 ## Contribuições
 Contribuições são bem-vindas! Sinta-se à vontade para abrir uma issue ou fazer um pull request.
-
-## Licença
-Este projeto está licenciado sob a licença MIT. Veja o arquivo LICENSE para mais detalhes.
