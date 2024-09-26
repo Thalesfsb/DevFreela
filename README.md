@@ -14,10 +14,14 @@ O **DevFreela** é uma aplicação backend desenvolvida em .NET Core como parte 
 
 - **Linguagem**: C#
 - **Framework**: .NET Core
+- **Design de Software**: SOLID
+- **Padrão de Arquitetura**: CQRS
+- **Arquitetura**: DDD com Padrão repository
 - **Banco de Dados**: SQL Server
 - **Autenticação**: JWT
 - **Testes Unitários**: xUnit
 - **Controle de versão**: Git
+- 
 
 ## Estrutura do Projeto
 
