@@ -40,3 +40,30 @@ O **DevFreela** é uma aplicação backend desenvolvida em .NET Core como parte 
 1. Clone o repositório:
    ```bash
    git clone https://github.com/Thalesfsb/DevFreela.git
+
+2. Navegue até o diretório do projeto:
+   ```bash
+   cd DevFreela
+   
+3. Configure a string de conexão do banco de dados no arquivo appsettings.json.
+   
+4. Execute as migrações do Entity Framework para criar as tabelas no banco de dados:
+   ```bash
+   dotnet ef database update
+   
+5. Inicie o projeto:
+   ```bash
+   dotnet run --project DevFreela.API
+   
+6. Acesse a API em http://localhost:5000.
+
+## Próximos Passos
+- Implementar novas funcionalidades como chat entre clientes e freelancers.
+- Integração com gateways de pagamento reais.
+- Melhoria nas métricas e monitoramento com ferramentas como o AWS CloudWatch.
+
+## Contribuições
+Contribuições são bem-vindas! Sinta-se à vontade para abrir uma issue ou fazer um pull request.
+
+## Licença
+Este projeto está licenciado sob a licença MIT. Veja o arquivo LICENSE para mais detalhes.
