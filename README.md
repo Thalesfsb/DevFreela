@@ -21,7 +21,6 @@ O **DevFreela** é uma aplicação backend desenvolvida em .NET Core como parte 
 - **Autenticação**: JWT
 - **Testes Unitários**: xUnit
 - **Controle de versão**: Git
-- 
 
 ## Estrutura do Projeto
 
